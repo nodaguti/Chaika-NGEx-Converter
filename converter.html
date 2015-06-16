@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Chaika NGEx Converter</title>
+    <style>
+        html{
+            line-height: 1.8;
+        }
+
+        label{
+            display: block;
+        }
+
+        #convertBtn, #downloadBtn{
+            -moz-appearance: button;
+            display: inline-block;
+            margin: 1em 0;
+            padding: 0;
+            cursor: pointer;
+            color: black;
+            text-decoration: none;
+        }
+
+        #result{
+            border: 1px #ccc dashed;
+            height: 300px;
+            width: 80%;
+            margin: 0 auto;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chaika NGEx Converter <small>ver 0.1 (2014/10/29)</small></h1>
+    <p>chaikaAboneEx, Chaika Abone Helper の NG 設定を chaika 1.7.0 以降向け NGEx の設定へ変換するツールです.</p>
+
+    <h3>使い方</h3>
+    <ol>
+        <li>
+            chaika データフォルダの下にある設定ファイル全てを指定します.
+            <ul>
+                <li>
+                    「chaika データフォルダ」は以下の方法で開くことができます.
+                    <ul>
+                        <li>
+                            <a href="https://support.mozilla.org/ja/kb/profiles-where-firefox-stores-user-data">プロファイルフォルダ</a>を開きます. その中にある「chaika」という名前のフォルダが chaika データフォルダです.
+                        </li>
+                        <li>
+                            chaika のツールバーボタンまたはコンテキストメニューの「スキン」から「スキンフォルダを開く...」を実行します. 開かれたフォルダの一つ上の階層が chaika データフォルダです.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    「設定ファイル」は以下に挙げるファイル群です. 複数個ファイルがある場合は全てのファイルを変換する必要があります.
+                    <ul>
+                        <li>NGadv.txt (Chaika Abone Helper)</li>
+                        <li>NGex.txt (chaikaAboneEx)</li>
+                        <li>NGthreads.txt (chaikaAboneEx)</li>
+                        <li>NGid2.txt (chaikaAboneEx)</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>変換元のデータの種類は自動で判別されます.</li>
+        <li>「変換」ボタンをクリックします.</li>
+        <li>変換されたデータが「変換結果」に表示されます.</li>
+        <li>元の設定ファイル（NGadv.txt, NGex.txt, NGthreads.txt, NGid2.txt）を削除して下さい.</li>
+        <li>NGEx.txt へ変換されたデータを反映させます.
+            <ul>
+                <li>
+                    まだ chaika 1.7.0 上で NGEx を使い始めていない場合:
+                    「ファイルとしてダウンロード」ボタンを押して「NGEx.txt」をダウンロードし, chaika データフォルダの中に入れて下さい.
+                </li>
+                <li>
+                    すでに chaika 1.7.0 上で NGEx を使い始めていた場合:
+                    「変換結果」の内容を chaika データフォルダの中にある NGEx.txt に追記して下さい.
+                </li>
+            </ul>
+        </li>
+    </ol>
+
+    <h3>注意</h3>
+    <ul>
+        <li>本ツールは完全にオフラインで動作します. データがどこかへ送信されたりすることはありません.</li>
+        <li>
+            NGEx の仕様により一部のフィルタは正しく変換されない恐れがあります.
+            そのような場合はログにその旨が出力されますので, <strong>変換後は必ず<a href="https://developer.mozilla.org/ja/docs/Tools/Web_Console">Web コンソール</a>を確認して下さい</strong>.
+        </li>
+        <li><strong>chaikaAboneEx をお使いの方は, <u>NGex.txt</u> と <u>NGEx.txt</u> を間違えないようお気をつけ下さい.</strong></li>
+    </ul>
+
+    <h3>変換元データ</h3>
+    <p>chaika データフォルダ内にある設定ファイル（NGadv.txt, NGex.txt, NGthreads.txt, NGid2.txt）全てを指定して下さい.</p>
+    <label>ファイル1: <input type="file" /></label>
+    <label>ファイル2: <input type="file" /></label>
+    <label>ファイル3: <input type="file" /></label>
+    <label>ファイル4: <input type="file" /></label>
+
+    <div><a id="convertBtn">変換</a></div>
+
+    <h3>変換結果</h3>
+    <div><a id="downloadBtn">ファイルとしてダウンロード</a></div>
+    <textarea id="result"></textarea>
+
+
+    <!-- For Firefox 24- -->
+    <script type="text/javascript" src="js/arrayfind_shim.js"></script>
+
+    <!-- For Firefox 29- -->
+    <script type="text/javascript" src="js/promise.min.js"></script>
+
+
+    <script type="text/javascript;version=1.8" src="js/main.js"></script>
+    <script type="text/javascript">
+        document.getElementById('convertBtn').addEventListener('click', convert, false);
+    </script>
+</body>
+</html>
